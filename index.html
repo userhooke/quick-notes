@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quick Notes v0.0.1</title>
+    <title>Quick Notes</title>
     <style>
         body {
             font-family: sans-serif;
@@ -24,23 +24,56 @@
         .button-group {
             display: inline-block;
         }
+        li {
+            margin-bottom: 30px;
+            text-align: left;
+            list-style: none;
+        }
+        li:after {
+            display: block;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: #eee;
+            margin-top: 30px
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Quick Notes v0.0.1</h1>
-        <textarea id="note"></textarea>
+        <h1>Quick Notes v0.0.2</h1>
+        <textarea id="noteArea"></textarea>
         <div class="button-group">
-            <button id="save">Save</button>
+            <button id="save" onClick="saveNote()">Save</button>
         </div>
         <h2>Saved notes</h2>
-        <ul class="saved-notes"></ul>
+        <ul id="savedNotes"></ul>
     </div>
 
 
 
     <script>
-
+        // getting value from textarea
+        function saveNote() {
+            var note = document.getElementById("noteArea").value;
+//             var br = document.createElement('br');
+//             note = note.replace(/\n\r?/g, br);
+            saveToList(note);
+        }
+        // appending value to ul
+        function saveToList(value) {
+            var savedNotes = document.getElementById("savedNotes");
+            var node = document.createElement('li');
+            var textnode = document.createTextNode(value);
+            node.appendChild(textnode);
+            savedNotes.appendChild(node);
+        }
+        
+        //get current date
+        function currentTime() {
+               var today = new Date();
+               return today;
+        }
     </script>
 </body>
 </html>
