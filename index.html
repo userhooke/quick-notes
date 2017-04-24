@@ -43,10 +43,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Quick Notes v0.0.2</h1>
+        <h1>Quick Notes v0.0.3</h1>
         <textarea id="noteArea"></textarea>
         <div class="button-group">
-            <button id="save" onClick="saveNote()">Save</button>
+            <button onClick="saveNote()">Save</button>
+            <button onClick="removeNotes()">Remove Notes</button>
+            <button onClick="restoreNotes()">Restore Notes</button>
         </div>
         <h2>Saved notes</h2>
         <ul id="savedNotes"></ul>
@@ -55,15 +57,36 @@
 
 
     <script>
+        // parsing notes from localStorage
+        var notes = JSON.parse(localStorage.getItem("notes"));
+        if(notes == null) {
+            notes = [];
+        }
+        renderNotes();
+
         // getting value from textarea
         function saveNote() {
             var note = document.getElementById("noteArea").value;
 //             var br = document.createElement('br');
 //             note = note.replace(/\n\r?/g, br);
-            saveToList(note);
+            notes.push(note);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            appendNote(note);
         }
-        // appending value to ul
-        function saveToList(value) {
+
+        // render notes from localStorage
+        function renderNotes() {
+            for(var n = 0; n < notes.length; n++) {
+                var savedNotes = document.getElementById("savedNotes");
+                var node = document.createElement('li');
+                var textnode = document.createTextNode(notes[n]);
+                node.appendChild(textnode);
+                savedNotes.appendChild(node);
+            }
+        }
+        
+        // append note to list
+        function appendNote(value) {
             var savedNotes = document.getElementById("savedNotes");
             var node = document.createElement('li');
             var textnode = document.createTextNode(value);
@@ -75,6 +98,18 @@
         function currentTime() {
                var today = new Date();
                return today;
+        }
+
+        // deletin notes from localStorage
+        function removeNotes() {
+            localStorage.setItem("backupNotes", localStorage.getItem("notes"));
+            localStorage.removeItem("notes");
+            location.reload();
+        }
+
+        function restoreNotes() {
+            localStorage.setItem("notes", localStorage.getItem("backupNotes"));
+            location.reload();
         }
     </script>
 </body>
