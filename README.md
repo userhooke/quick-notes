@@ -3,6 +3,7 @@
 ### To do:
 - add timestamps
 - save line breaks from textarea
+- add export notes history feature
 
 ### Done:
 - grabbing text from texarea
