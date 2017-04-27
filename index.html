@@ -16,7 +16,7 @@
         }
         .container {
             margin: 0 auto;
-            width: 600px;
+            max-width: 600px;
         }
         textarea {
             height: 300px;
@@ -39,11 +39,22 @@
             background-color: #eee;
             margin-top: 30px
         }
+        button {
+            margin: 5px;
+            background-color: #2b2b2b;
+            border: none;
+            color: white;
+            padding: 13px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Quick Notes v0.0.3</h1>
+        <h1>Quick Notes</h1>
         <textarea id="noteArea"></textarea>
         <div class="button-group">
             <button onClick="saveNote()">Save</button>
