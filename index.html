@@ -70,7 +70,7 @@
     <script>
         // parsing notes from localStorage
         var notes = JSON.parse(localStorage.getItem("notes"));
-        if(notes == null) {
+        if(notes === null) {
             notes = [];
         }
         renderNotes();
@@ -106,10 +106,9 @@
         }
         
         //get current date
-        function currentTime() {
-               var today = new Date();
-               return today;
-        }
+//        function currentTime() {
+//               return new Date();
+//        }
 
         // deletin notes from localStorage
         function removeNotes() {
