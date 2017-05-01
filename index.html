@@ -10,9 +10,11 @@
             font-family: sans-serif;
             color: #2b2b2b;
             text-align: center;
+            counter-reset: notenum;
         }
         h2 {
             color: #9a9a9a;
+            margin: 40px 0 30px 0;
         }
         .container {
             margin: 0 auto;
@@ -25,11 +27,13 @@
         }
         .button-group {
             display: inline-block;
+
         }
         li {
             margin-bottom: 30px;
             text-align: left;
             list-style: none;
+            position: relative;
         }
         li:after {
             display: block;
@@ -38,6 +42,16 @@
             height: 1px;
             background-color: #eee;
             margin-top: 30px
+        }
+        li:before {
+            display: block;
+            counter-increment: notenum;
+            content: counter(notenum) "";
+            position: absolute;
+            left: -44px;
+            top: -20px;
+            color: #e2e2e2;
+            font-size: 40px;
         }
         button {
             margin: 5px;
@@ -104,11 +118,6 @@
             node.appendChild(textnode);
             savedNotes.appendChild(node);
         }
-        
-        //get current date
-//        function currentTime() {
-//               return new Date();
-//        }
 
         // deletin notes from localStorage
         function removeNotes() {
