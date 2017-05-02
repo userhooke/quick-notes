@@ -46,3 +46,28 @@ function restoreNotes() {
   localStorage.setItem("notes", localStorage.getItem("backupNotes"));
   location.reload();
 }
+
+//get current date
+function date() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+
+  today = dd + "-" + mm + "-" + yyyy;
+  return today;
+}
+
+// save to file with FileSaver.js
+function saveToFile() {
+  var blob = new Blob([notes], { type: "text/plain;charset=utf-8" });
+  saveAs(blob, "QuickNotes-" + date() + ".txt");
+}
