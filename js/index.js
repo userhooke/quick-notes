@@ -68,6 +68,7 @@ function date() {
 
 // save to file with FileSaver.js
 function saveToFile() {
-  var blob = new Blob([notes], { type: "text/plain;charset=utf-8" });
-  saveAs(blob, "QuickNotes-" + date() + ".txt");
+  var innerNotes = document.getElementById("savedNotes").innerHTML
+  var blob = new Blob([innerNotes], { type: "text/plain;charset=utf-8" });
+  saveAs(blob, "QuickNotes-" + date() + ".html");
 }
