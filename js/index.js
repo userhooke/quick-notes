@@ -8,8 +8,6 @@ renderNotes();
 // getting value from textarea
 function saveNote() {
   var note = document.getElementById("noteArea").value;
-  //var br = document.createElement('br');
-  //note = note.replace(/\n\r?/g, br);
   notes.push(note);
   localStorage.setItem("notes", JSON.stringify(notes));
   appendNote(note);
